@@ -2,6 +2,7 @@ package com.studentmanager.student.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,4 +35,9 @@ public class StudentController {
         return "update";
     }
 
+    @PostMapping("/save")
+    public String comm(@RequestParam String name, @RequestParam int age){
+        System.out.println(name+" " + age);
+        return "redirect:/student/comm";
+    }
 }
