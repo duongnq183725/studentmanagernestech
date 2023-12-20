@@ -1,26 +1,31 @@
 package com.studentmanager.student.controller;
 
+import com.studentmanager.student.model.Student;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value ="/student")
 public class StudentController {
     @GetMapping
-    public String Home(){
-    return "home";
+    public String Home(Model model){
+        String msg = "hello";
+        model.addAttribute("message", msg);
+        return "home";
     }
 
     @GetMapping("/create")
-    public String Create(){
+    public String Create(Model model){
+        Student student = new Student();
+        model.addAttribute("student", student);
         return "create";
     }
 
-    @GetMapping("/profile")
-    public String Details(){
+    @GetMapping("/profile/{id}/{name}")
+    public String Details(@PathVariable int id, @PathVariable String name, Model model){
+        System.out.println(name);
+        model.addAttribute("name", name);
         return "details";
     }
 
@@ -36,8 +41,8 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public String comm(@RequestParam String name, @RequestParam int age){
-        System.out.println(name+" " + age);
+    public String comm(@ModelAttribute Student student){
+        System.out.println(student);
         return "redirect:/student/comm";
     }
 }
