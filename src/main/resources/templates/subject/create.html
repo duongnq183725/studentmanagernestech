@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Subject</title>
+</head>
+<body>
+    <form action="http://localhost:8080/subj/save" method="post" th:object="${sj}">
+
+        <label>Name: </label>
+        <input type="text" th:field="*{sjName}">
+        <br>
+        <button type = "submit">submit</button>
+    </form>
+</body>
+</html>

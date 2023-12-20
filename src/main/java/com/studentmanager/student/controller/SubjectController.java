@@ -5,6 +5,8 @@ import com.studentmanager.student.service.SubjService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -19,5 +21,16 @@ public class SubjectController {
         Subject subject = list.get(0);
         model.addAttribute("sj", subject);
         return "subject/getList";
+    }
+    @GetMapping("/create")
+    public String create(Model model) {
+        Subject subject = new Subject();
+        model.addAttribute("sj", subject);
+        return "subject/create";
+    }
+    @PostMapping("/save")
+    public String save(@ModelAttribute Subject subject) {
+        SubjService.create(subject);
+        return "redirect:http://localhost:8080/subj";
     }
 }
