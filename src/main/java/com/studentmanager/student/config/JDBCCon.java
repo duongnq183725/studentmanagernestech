@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class JDBCCon {
     public final static String dbName = "/kt";
     public final static String username = "root";
-    public final static String password = "duong123";
+    public final static String password = "810528";
     public final static String url = "jdbc:mysql://localhost:3306" + dbName;
     public static Connection connection (){
         try{
